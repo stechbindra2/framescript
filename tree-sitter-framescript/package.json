@@ -31,10 +31,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/stechbindra/framescript.git"
+    "url": "git+https://github.com/stechbindra2/framescript.git"
   },
-  "homepage": "https://github.com/stechbindra/framescript#readme",
+  "homepage": "https://github.com/stechbindra2/framescript#readme",
   "bugs": {
-    "url": "https://github.com/stechbindra/framescript/issues"
+    "url": "https://github.com/stechbindra2/framescript/issues"
   }
 }
