@@ -1,0 +1,36 @@
+{
+  "Named import": {
+    "prefix": "import",
+    "body": ["import { ${1:name} } from \"${2:./module.frame}\";"],
+    "description": "Import named declarations from another FrameScript module"
+  },
+  "Composition": {
+    "prefix": "composition",
+    "body": [
+      "composition ${1:Name} {",
+      "  width: ${2:1920};",
+      "  height: ${3:1080};",
+      "  fps: ${4:30};",
+      "  duration: ${5:5s};",
+      "  background: \"${6:#000000}\";",
+      "  $0",
+      "}"
+    ],
+    "description": "Create a FrameScript composition"
+  },
+  "Animation track": {
+    "prefix": "animate",
+    "body": [
+      "animate ${1:opacity} {",
+      "  ${2:0s}: ${3:0};",
+      "  ${4:1s}: ${5:1} ease ${6:out-cubic};",
+      "}"
+    ],
+    "description": "Create a keyframe animation track"
+  },
+  "Asset": {
+    "prefix": "asset",
+    "body": ["asset ${1:name} {", "  src: \"${2:assets/file.png}\";", "  type: \"${3:image}\";", "}"],
+    "description": "Declare a content-addressed asset"
+  }
+}

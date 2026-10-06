@@ -1,0 +1,13 @@
+node_modules/
+dist/
+.framescript/
+coverage/
+release/
+*.tgz
+*.mp4
+*.webm
+*.mov
+.DS_Store
+.env
+.env.*
+!.env.example

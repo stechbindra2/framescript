@@ -1,0 +1,86 @@
+{
+  "name": "framescript",
+  "version": "0.1.0",
+  "private": false,
+  "description": "A renderer-neutral language for deterministic, production-grade motion design",
+  "type": "module",
+  "main": "./dist/src/index.js",
+  "types": "./dist/src/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/src/index.d.ts",
+      "import": "./dist/src/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist/src",
+    "src",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md"
+  ],
+  "bin": {
+    "framec": "./dist/src/cli.js",
+    "framescript-language-server": "./dist/src/lsp/server.js"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "check": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "grammar:generate": "tree-sitter generate tree-sitter-framescript/grammar.js",
+    "grammar:test": "tree-sitter test --grammar-path tree-sitter-framescript",
+    "grammar:parse": "tree-sitter parse --grammar-path tree-sitter-framescript",
+    "lsp": "tsx src/lsp/server.ts --stdio",
+    "extension:install": "npm --prefix editors/vscode install --no-audit --no-fund",
+    "extension:build": "npm --prefix editors/vscode run build",
+    "extension:package": "npm --prefix editors/vscode run package",
+    "framec": "tsx src/cli.ts",
+    "example:build": "tsx src/cli.ts build examples/product-launch.frame --out .framescript/product-launch",
+    "example:media": "tsx src/cli.ts build examples/media-pipeline.frame --out .framescript/media-pipeline",
+    "example:modules": "tsx src/cli.ts build examples/modules.frame --out .framescript/modules",
+    "prepack": "npm run build",
+    "release:verify": "npm run check && npm test && npm run grammar:generate && npm run build && node scripts/verify-release.mjs",
+    "release:artifacts": "node scripts/build-release.mjs",
+    "version:set": "node scripts/set-version.mjs",
+    "repository:set": "node scripts/set-repository.mjs",
+    "publish:dry-run": "npm publish --dry-run"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "license": "MIT",
+  "keywords": [
+    "animation",
+    "video",
+    "motion-graphics",
+    "remotion",
+    "compiler",
+    "language-server"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "packageManager": "npm@11.19.1",
+  "dependencies": {
+    "vscode-languageserver": "10.1.2",
+    "vscode-languageserver-textdocument": "1.0.15"
+  },
+  "devDependencies": {
+    "@types/node": "26.6.4",
+    "tree-sitter-cli": "0.27.0",
+    "tsx": "4.23.15",
+    "typescript": "7.0.2",
+    "vitest": "5.0.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stechbindra/framescript.git"
+  },
+  "homepage": "https://github.com/stechbindra/framescript#readme",
+  "bugs": {
+    "url": "https://github.com/stechbindra/framescript/issues"
+  }
+}

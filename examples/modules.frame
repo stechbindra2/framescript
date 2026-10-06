@@ -1,0 +1,18 @@
+import { brand as accent, canvas, titleSize } from "./theme.frame";
+
+composition ModuleDemo {
+  width: 1920;
+  height: 1080;
+  fps: 30;
+  duration: 3s;
+  background: canvas;
+
+  text title {
+    text: "Cross-file FrameScript";
+    x: 960px;
+    y: 540px;
+    width: 1400px;
+    fontSize: titleSize;
+    color: accent;
+  }
+}

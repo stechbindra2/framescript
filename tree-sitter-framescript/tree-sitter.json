@@ -1,0 +1,30 @@
+{
+  "grammars": [
+    {
+      "name": "framescript",
+      "camelcase": "FrameScript",
+      "title": "FrameScript",
+      "scope": "source.framescript",
+      "file-types": ["frame"],
+      "injection-regex": "^framescript$",
+      "class-name": "TreeSitterFramescript"
+    }
+  ],
+  "metadata": {
+    "version": "0.1.0",
+    "license": "MIT",
+    "description": "A deterministic animation and video language",
+    "authors": [
+      {"name": "FrameScript contributors"}
+    ]
+  },
+  "bindings": {
+    "c": false,
+    "go": false,
+    "node": false,
+    "python": false,
+    "rust": false,
+    "swift": false,
+    "zig": false
+  }
+}

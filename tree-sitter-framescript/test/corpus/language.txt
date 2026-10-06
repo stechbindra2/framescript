@@ -1,0 +1,215 @@
+==================
+Composition and layers
+==================
+
+let accent = "#8b5cf6";
+composition Demo {
+  width: 1920;
+  duration: 5s;
+  rect card {
+    x: 960px;
+    fill: accent;
+    animate opacity {
+      0s: 0;
+      1s: 1 ease out-cubic;
+    }
+  }
+}
+
+---
+
+(source_file
+  (constant_declaration
+    name: (identifier)
+    value: (string_literal))
+  (composition_declaration
+    name: (identifier)
+    body: (composition_body
+      (property_declaration
+        name: (identifier)
+        value: (number_literal))
+      (property_declaration
+        name: (identifier)
+        value: (unit_literal))
+      (layer_declaration
+        type: (layer_type (identifier))
+        name: (identifier)
+        body: (layer_body
+          (property_declaration
+            name: (identifier)
+            value: (unit_literal))
+          (property_declaration
+            name: (identifier)
+            value: (identifier))
+          (animation_declaration
+            property: (identifier)
+            (keyframe
+              time: (unit_literal)
+              value: (number_literal))
+            (keyframe
+              time: (unit_literal)
+              value: (number_literal)
+              easing: (identifier))))))))
+
+==================
+Nested groups and media
+==================
+
+composition Social {
+  duration: 3s
+  group content {
+    direction: column
+    text title { text: "Hello" }
+    image logo { src: "logo.png"; width: 20pct }
+  }
+}
+
+---
+
+(source_file
+  (composition_declaration
+    name: (identifier)
+    body: (composition_body
+      (property_declaration
+        name: (identifier)
+        value: (unit_literal))
+      (layer_declaration
+        type: (layer_type (identifier))
+        name: (identifier)
+        body: (layer_body
+          (property_declaration
+            name: (identifier)
+            value: (identifier))
+          (layer_declaration
+            type: (layer_type (identifier))
+            name: (identifier)
+            body: (layer_body
+              (property_declaration
+                name: (identifier)
+                value: (string_literal))))
+          (layer_declaration
+            type: (layer_type (identifier))
+            name: (identifier)
+            body: (layer_body
+              (property_declaration
+                name: (identifier)
+                value: (string_literal))
+              (property_declaration
+                name: (identifier)
+                value: (unit_literal)))))))))
+
+==================
+Arrays and signed units
+==================
+
+composition Signed {
+  duration: 30f;
+  rect item {
+    x: -20px;
+    shadow: [0px, 10px, 20px, "#0008",];
+  }
+}
+
+---
+
+(source_file
+  (composition_declaration
+    name: (identifier)
+    body: (composition_body
+      (property_declaration
+        name: (identifier)
+        value: (unit_literal))
+      (layer_declaration
+        type: (layer_type (identifier))
+        name: (identifier)
+        body: (layer_body
+          (property_declaration
+            name: (identifier)
+            value: (unit_literal))
+          (property_declaration
+            name: (identifier)
+            value: (array_literal
+              (unit_literal)
+              (unit_literal)
+              (unit_literal)
+              (string_literal))))))))
+
+==================
+Assets, fonts, and extension layers
+==================
+
+asset logo {
+  src: "assets/logo.svg";
+  type: "image";
+}
+font brand {
+  src: "assets/brand.woff2";
+  family: "Brand Sans";
+  weight: 700;
+}
+composition Extensible {
+  duration: 2s;
+  particles stars { count: 100; }
+}
+
+---
+
+(source_file
+  (asset_declaration
+    name: (identifier)
+    body: (resource_body
+      (property_declaration
+        name: (identifier)
+        value: (string_literal))
+      (property_declaration
+        name: (identifier)
+        value: (string_literal))))
+  (font_declaration
+    name: (identifier)
+    body: (resource_body
+      (property_declaration
+        name: (identifier)
+        value: (string_literal))
+      (property_declaration
+        name: (identifier)
+        value: (string_literal))
+      (property_declaration
+        name: (identifier)
+        value: (number_literal))))
+  (composition_declaration
+    name: (identifier)
+    body: (composition_body
+      (property_declaration
+        name: (identifier)
+        value: (unit_literal))
+      (layer_declaration
+        type: (layer_type (identifier))
+        name: (identifier)
+        body: (layer_body
+              (property_declaration
+                name: (identifier)
+                value: (number_literal)))))))
+
+==================
+Named module imports
+==================
+
+import { accent, logo as mark, } from "./theme.frame";
+composition Imported { background: accent; }
+
+---
+
+(source_file
+  (import_declaration
+    (import_specifier
+      imported: (identifier))
+    (import_specifier
+      imported: (identifier)
+      local: (identifier))
+    source: (string_literal))
+  (composition_declaration
+    name: (identifier)
+    body: (composition_body
+      (property_declaration
+        name: (identifier)
+        value: (identifier)))))

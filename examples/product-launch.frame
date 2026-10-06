@@ -1,0 +1,93 @@
+// A complete source-to-Remotion example.
+let ink = "#f7f8ff";
+let accent = "#8b5cf6";
+
+composition ProductLaunch {
+  width: 1920;
+  height: 1080;
+  fps: 30;
+  duration: 6s;
+  background: "#070914";
+
+  circle ambientGlow {
+    x: 1480px;
+    y: 200px;
+    width: 720px;
+    height: 720px;
+    fill: "#312e81";
+    blur: 90px;
+    opacity: 0.42;
+    animate scale {
+      0s: 0.82 ease out-cubic;
+      2s: 1.08 ease in-out-cubic;
+      6s: 0.92 ease in-out-cubic;
+    }
+  }
+
+  rect card {
+    x: 960px;
+    y: 540px;
+    width: 1500px;
+    height: 720px;
+    radius: 56px;
+    fill: "#11152b";
+    stroke: "#343b67";
+    strokeWidth: 2px;
+    shadow: [0px, 40px, 100px, "#00000080"];
+    animate opacity {
+      0s: 0;
+      800ms: 1 ease out-cubic;
+    }
+    animate y {
+      0s: 620px ease out-back;
+      1s: 540px;
+    }
+  }
+
+  text eyebrow {
+    x: 380px;
+    y: 360px;
+    text: "FRAMESCRIPT  /  01";
+    color: accent;
+    fontSize: 30px;
+    fontWeight: 700;
+    letterSpacing: 5px;
+    animate opacity {
+      300ms: 0;
+      1s: 1 ease out-cubic;
+    }
+  }
+
+  text headline {
+    x: 700px;
+    y: 540px;
+    width: 1120px;
+    text: "Build motion.\nShip stories.";
+    color: ink;
+    fontSize: 112px;
+    fontWeight: 800;
+    lineHeight: 1.04;
+    letterSpacing: -3px;
+    animate opacity {
+      500ms: 0;
+      1.4s: 1 ease out-cubic;
+    }
+    animate x {
+      500ms: 620px ease out-cubic;
+      1.4s: 700px;
+    }
+  }
+
+  text footer {
+    x: 680px;
+    y: 760px;
+    width: 1080px;
+    text: "One deterministic timeline. Multiple render engines.";
+    color: "#aeb5d6";
+    fontSize: 36px;
+    animate opacity {
+      1s: 0;
+      1.8s: 1 ease out-cubic;
+    }
+  }
+}

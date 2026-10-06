@@ -1,0 +1,118 @@
+{
+  "name": "framescript-vscode",
+  "displayName": "FrameScript",
+  "description": "Language support for deterministic animation and programmatic video",
+  "version": "0.1.0",
+  "publisher": "framescript",
+  "license": "MIT",
+  "private": false,
+  "preview": true,
+  "engines": {
+    "vscode": "^1.95.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "pricing": "Free",
+  "galleryBanner": {
+    "color": "#080b16",
+    "theme": "dark"
+  },
+  "keywords": [
+    "animation",
+    "video",
+    "remotion",
+    "language",
+    "framescript"
+  ],
+  "activationEvents": [
+    "onLanguage:framescript"
+  ],
+  "extensionKind": [
+    "workspace"
+  ],
+  "main": "./dist/extension.cjs",
+  "contributes": {
+    "languages": [
+      {
+        "id": "framescript",
+        "aliases": [
+          "FrameScript",
+          "framescript"
+        ],
+        "extensions": [
+          ".frame"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "framescript",
+        "scopeName": "source.framescript",
+        "path": "./syntaxes/framescript.tmLanguage.json"
+      }
+    ],
+    "snippets": [
+      {
+        "language": "framescript",
+        "path": "./snippets/framescript.json"
+      }
+    ],
+    "commands": [
+      {
+        "command": "framescript.restartLanguageServer",
+        "title": "FrameScript: Restart Language Server"
+      }
+    ],
+    "configuration": {
+      "title": "FrameScript",
+      "properties": {
+        "framescript.trace.server": {
+          "type": "string",
+          "enum": [
+            "off",
+            "messages",
+            "verbose"
+          ],
+          "default": "off",
+          "scope": "window",
+          "description": "Trace communication with the FrameScript language server."
+        }
+      }
+    },
+    "configurationDefaults": {
+      "[framescript]": {
+        "editor.semanticHighlighting.enabled": true,
+        "editor.formatOnSave": false,
+        "editor.tabSize": 2,
+        "editor.insertSpaces": true
+      }
+    }
+  },
+  "scripts": {
+    "clean": "node -e \"require('node:fs').rmSync('dist',{recursive:true,force:true})\"",
+    "typecheck": "tsc --noEmit",
+    "build": "npm run clean && npm run typecheck && esbuild src/extension.ts --bundle --platform=node --format=cjs --external:vscode --outfile=dist/extension.cjs && esbuild ../../src/lsp/server.ts --bundle --platform=node --format=cjs --outfile=dist/server.cjs",
+    "package": "npm run build && vsce package --allow-missing-repository --out dist/framescript-vscode.vsix",
+    "package:pre-release": "npm run build && vsce package --pre-release --allow-missing-repository --out dist/framescript-vscode.vsix",
+    "publish:marketplace": "vsce publish",
+    "publish:marketplace:pre-release": "vsce publish --pre-release"
+  },
+  "devDependencies": {
+    "@types/node": "26.6.4",
+    "@types/vscode": "1.95.0",
+    "@vscode/vsce": "4.0.0",
+    "esbuild": "0.28.2",
+    "typescript": "7.0.2",
+    "vscode-languageclient": "10.1.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stechbindra/framescript.git"
+  },
+  "homepage": "https://github.com/stechbindra/framescript#readme",
+  "bugs": {
+    "url": "https://github.com/stechbindra/framescript/issues"
+  }
+}

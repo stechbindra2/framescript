@@ -1,0 +1,24 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run check
+      - run: npm test
+      - run: npm run grammar:generate
+      - run: npm run grammar:test
+      - run: npm run extension:install
+      - run: npm run extension:build
+      - run: npm run framec -- check examples/product-launch.frame
+      - run: node scripts/verify-release.mjs

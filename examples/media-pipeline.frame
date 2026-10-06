@@ -1,0 +1,38 @@
+asset soundtrack {
+  src: "https://cdn.example.com/music/theme.wav";
+  type: "audio";
+}
+
+font brand {
+  src: "https://cdn.example.com/fonts/brand.woff2";
+  family: "FrameScript Brand";
+  weight: 700;
+  style: "normal";
+}
+
+composition MediaPipeline {
+  width: 1920;
+  height: 1080;
+  fps: 30;
+  duration: 5s;
+  background: "#080b16";
+
+  text title {
+    x: 960px;
+    y: 540px;
+    text: "Declared assets. Deterministic audio.";
+    fontFamily: brand;
+    fontWeight: 700;
+    fontSize: 80px;
+  }
+
+  audio score {
+    src: soundtrack;
+    trimStart: 1s;
+    trimEnd: 6s;
+    fadeIn: 500ms;
+    fadeOut: 1s;
+    volume: 0.8;
+    loop: true;
+  }
+}

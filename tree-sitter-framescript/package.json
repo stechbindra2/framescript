@@ -1,0 +1,40 @@
+{
+  "name": "tree-sitter-framescript",
+  "version": "0.1.0",
+  "description": "Tree-sitter grammar for FrameScript",
+  "license": "MIT",
+  "type": "module",
+  "files": [
+    "grammar.js",
+    "tree-sitter.json",
+    "queries",
+    "src"
+  ],
+  "keywords": [
+    "tree-sitter",
+    "parser",
+    "framescript",
+    "animation"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "tree-sitter": [
+    {
+      "scope": "source.framescript",
+      "file-types": [
+        "frame"
+      ],
+      "injection-regex": "^framescript$"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stechbindra/framescript.git"
+  },
+  "homepage": "https://github.com/stechbindra/framescript#readme",
+  "bugs": {
+    "url": "https://github.com/stechbindra/framescript/issues"
+  }
+}

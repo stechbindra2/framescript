@@ -1,0 +1,38 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "FrameScript",
+  "scopeName": "source.framescript",
+  "patterns": [
+    {"include": "#comments"},
+    {"include": "#strings"},
+    {"include": "#declarations"},
+    {"include": "#keywords"},
+    {"include": "#numbers"},
+    {"include": "#properties"}
+  ],
+  "repository": {
+    "comments": {
+      "patterns": [
+        {"name": "comment.line.double-slash.framescript", "match": "//.*$"},
+        {"name": "comment.block.framescript", "begin": "/\\*", "end": "\\*/"}
+      ]
+    },
+    "strings": {
+      "patterns": [
+        {"name": "string.quoted.double.framescript", "begin": "\"", "end": "\"", "patterns": [{"name": "constant.character.escape.framescript", "match": "\\\\."}]},
+        {"name": "string.quoted.single.framescript", "begin": "'", "end": "'", "patterns": [{"name": "constant.character.escape.framescript", "match": "\\\\."}]}
+      ]
+    },
+    "declarations": {
+      "patterns": [
+        {"match": "\\b(import)\\s+(\\{)", "captures": {"1": {"name": "keyword.control.import.framescript"}, "2": {"name": "punctuation.section.block.begin.framescript"}}},
+        {"match": "\\b(composition)\\s+([A-Za-z_][A-Za-z0-9_-]*)", "captures": {"1": {"name": "keyword.declaration.framescript"}, "2": {"name": "entity.name.function.framescript"}}},
+        {"match": "\\b(asset|font|let)\\s+([A-Za-z_][A-Za-z0-9_-]*)", "captures": {"1": {"name": "keyword.declaration.framescript"}, "2": {"name": "variable.other.constant.framescript"}}},
+        {"match": "\\b(group|rect|circle|text|image|video|audio)\\s+([A-Za-z_][A-Za-z0-9_-]*)", "captures": {"1": {"name": "storage.type.framescript"}, "2": {"name": "entity.name.type.framescript"}}}
+      ]
+    },
+    "keywords": {"name": "keyword.control.framescript", "match": "\\b(from|as|animate|ease|true|false)\\b"},
+    "numbers": {"name": "constant.numeric.framescript", "match": "(?<![A-Za-z0-9_])[+-]?(?:\\d+(?:\\.\\d*)?|\\.\\d+)(?:ms|s|f|px|pct|deg)?\\b"},
+    "properties": {"name": "variable.other.property.framescript", "match": "\\b[A-Za-z_][A-Za-z0-9_-]*(?=\\s*:)"}
+  }
+}
